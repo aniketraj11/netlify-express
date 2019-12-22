@@ -31,6 +31,8 @@ var data = [
      hindu_maah: "Shraavan",
      paksha: "Shukla Paksha", }
 ]
+
+/*
 router.get('/', (req, res) => {
   let index = 0;
     if(flag == 0){
@@ -51,7 +53,21 @@ router.get('/', (req, res) => {
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
+*/
 
+app.get("/panchang", function(req, res, next) {
+    let index = 0;
+    if(flag == 0){
+        index = 0;
+        flag = 1;
+    }
+    else{
+        index = 1;
+        flag = 0;
+    }
+    res.setHeader("Content-Type", "application/json");
+    res.end(JSON.stringify(data[index]));
+});
 
 module.exports = app;
 module.exports.handler = serverless(app);
