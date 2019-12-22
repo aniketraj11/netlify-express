@@ -51,7 +51,10 @@ router.get('/', (req, res) => {
 
 //app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
-//app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
+app.use('/', (req, res) => {
+  res.setHeader("Content-Type", "application/json");
+    res.end(JSON.stringify(data[index]));
+}));
 
 
 module.exports = app;
