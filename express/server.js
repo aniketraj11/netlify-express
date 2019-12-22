@@ -55,7 +55,7 @@ app.use('/.netlify/functions/server', router);  // path must route to lambda
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 */
 
-app.get("/panchang", function(req, res, next) {
+app.get("/", function(req, res, next) {
     let index = 0;
     if(flag == 0){
         index = 0;
